@@ -9,6 +9,7 @@ var expressSanitizer = require('express-sanitizer');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var userAPI = require('./routes/userAPI');
+require('./routes/productAPI');
 
 import webpack from 'webpack';
 import config from './webpack.config.dev.js';

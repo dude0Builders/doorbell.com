@@ -9,4 +9,4 @@ userTypeSchema.methods.getType = function(){
   return this.type;
 }
 
-mongoose.model('UserType', userTypeSchema);
+mongoose.model('UserType', userTypeSchema, 'UserTypes');

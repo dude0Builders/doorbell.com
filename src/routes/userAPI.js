@@ -9,8 +9,8 @@ var UserType = mongoose.model('UserType');
 router.get('/list', function (req, res, next) {
   User.find(function (err, users) {
     if (err)
-      res.status(404).json({
-        message: 'No users available'
+      res.status(500).json({
+        message: 'Error while fetching users list'
       })
     res.send(users);
   });
