@@ -2,8 +2,7 @@ import mongoose from 'mongoose';
 
 var userTypeSchema = mongoose.Schema({
     type:{type:String, unique:true},
-    roles:{type:mongoose.Schema.Types.Array},
-    _id:String
+    roles:[{type:String}]
 });
 
 userTypeSchema.methods.getType = function(){
