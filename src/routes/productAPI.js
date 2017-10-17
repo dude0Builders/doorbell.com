@@ -18,7 +18,7 @@ router.get('/productlist', function (req, res, next) {
         'message': 'Error occurred while fetching product list ' + err.message
       });
     }
-    if (!res) {
+    if (!products) {
       console.info('No Products available');
       return res.status(404).json({
         'message': 'No Products available '
@@ -47,20 +47,21 @@ router.get('/product/:productid', function (req, res, next) {
 })
 
 router.post('/product/create', function (req, res, next) {
-  var product = new Product();
   if (!req.body.name || !req.body.type) {
     return res.status(403).status({
       'message': 'Please fill all the fields'
     });
   }
+  var product = new Product();
   product.name = req.sanitize(req.body.name);
+  product.detail = req.sanitize(req.body.detail);
   product.type = req.sanitize(req.body.type);
   product.price = req.sanitize(req.body.price);
 
   var promise = product.save();
   promise.then(function (data) {
     console.log('Successfully created product ');
-    return status(200).json({
+    return res.status(200).json({
       'message': 'Product successfully created.'
     });
   }).catch(function (err) {
@@ -85,7 +86,7 @@ router.post('/productType/create', function (req, res, next) {
   var promise = productType.save();
   promise.then(function (data) {
     console.log("Product Type sucessfully created");
-    return res(200).json({
+    return res.status(200).json({
       'message': 'ProductType successfully created.'
     });
   }).catch(function (err) {
