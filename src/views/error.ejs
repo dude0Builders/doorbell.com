@@ -1,3 +1,17 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<html>
+  <%- include partials/head.ejs %>
+  <body>
+      <div class="error-img text-center">
+          <div class="error-img-black">
+            <div class="container">
+              <h2><%= error.status %></h2>
+              <p><%= error.status %></p>
+
+              <span><a href="404-error.html#">HOME</a> > <a href="404-error.html#">PAGES</a> > <b class="content-subhead">404 ERROR</b></span> </div>
+          </div>
+        </div>
+  </body>
+  <%- include partials/footer.ejs %>
+  <%- include partials/scripts.ejs %>
+</html>
+
