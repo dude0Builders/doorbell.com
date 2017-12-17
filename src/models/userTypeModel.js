@@ -1,11 +1,16 @@
 import mongoose from 'mongoose';
 
 var userTypeSchema = mongoose.Schema({
-    type:{type:String, unique:true},
-    roles:[{type:String}]
+  type: {
+    type: String,
+    unique: true
+  },
+  roles: [{
+    type: String
+  }]
 });
 
-userTypeSchema.methods.getType = function(){
+userTypeSchema.methods.getType = function () {
   return this.type;
 }
 

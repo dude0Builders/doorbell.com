@@ -12,7 +12,7 @@ var userSchema = new mongoose.Schema({
   salt: String,
   type: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'userType'
+    ref: 'UserType'
   }]
 });
 

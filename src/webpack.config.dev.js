@@ -6,12 +6,12 @@ export default {
   devtool: 'inline-source-map',
 
   entry: [
-    path.resolve(__dirname, 'public/javascripts/index')
+    path.resolve(__dirname, 'public/js/index')
   ],
   target: 'web',
   output: {
-    path: path.resolve(__dirname, 'public/javascripts'),
-    publicPath: '/javascripts/',
+    path: path.resolve(__dirname, 'public/js'),
+    publicPath: '/js/',
     filename: 'bundle.js'
   },
   plugins: [

@@ -1,16 +1,17 @@
-import router from './index';
+import {router,auth} from './index';
 import user from '../models/userModel';
 import userType from '../models/userTypeModel';
 import product from '../models/productModel';
 import productType from '../models/productTypeModel';
 import mongoose from 'mongoose';
 
+
 var Product = mongoose.model('Products');
 var User = mongoose.model('Users');
 var UserType = mongoose.model('UserType');
 var ProductType = mongoose.model('ProductType');
 
-router.get('/productlist', function (req, res, next) {
+router.get('/productlist', auth, function (req, res, next) {
   Product.find(function (err, products) {
     if (err) {
       console.error('Error occurred while fething product list: ' + err.message);
@@ -28,7 +29,7 @@ router.get('/productlist', function (req, res, next) {
   })
 })
 
-router.param('productid', function (req, res, next, id) {
+router.param('productid',  function (req, res, next, id) {
   var query = Product.findById(id);
   query.exec(function (err, product) {
     if (err) {
@@ -42,11 +43,11 @@ router.param('productid', function (req, res, next, id) {
   })
 })
 
-router.get('/product/:productid', function (req, res, next) {
+router.get('/product/:productid', auth, function (req, res, next) {
   return res.status(200).json(req.product);
 })
 
-router.post('/product/create', function (req, res, next) {
+router.post('/product/create', auth, function (req, res, next) {
   if (!req.body.name || !req.body.type) {
     return res.status(403).status({
       'message': 'Please fill all the fields'
@@ -67,7 +68,7 @@ router.post('/product/create', function (req, res, next) {
   }).catch(function (err) {
     if (err) {
       console.error('Error while creating product : ' + err.message);
-      return res.status(500).status({
+      return res.status(500).json({
         'message': 'Error occurred while creating proudct ' + err.message
       });
     }
@@ -75,7 +76,7 @@ router.post('/product/create', function (req, res, next) {
 })
 
 
-router.post('/productType/create', function (req, res, next) {
+router.post('/productType/create', auth, function (req, res, next) {
   if (!req.body.type) {
     return res.status(403).json({
       'message': 'Please enter all fields'
@@ -97,7 +98,7 @@ router.post('/productType/create', function (req, res, next) {
   })
 })
 
-router.get('/producType/list', function (req, res, next) {
+router.get('/producType/list', auth, function (req, res, next) {
   ProductType.find(function (err, list) {
     if (err) {
       return res.status(500).json({

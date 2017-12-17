@@ -6,14 +6,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressSanitizer = require('express-sanitizer');
 
-var index = require('./routes/index');
+var {router} = require('./routes/index');
 var users = require('./routes/users');
 var userAPI = require('./routes/userAPI');
 require('./routes/productAPI');
-
+require('./routes/orderAPI');
 import webpack from 'webpack';
 import config from './webpack.config.dev.js';
 import mongoConn from './config/mongoCon';
+import passport from 'passport';
+import './config/passport';
+import './models/userModel';
 
 
 const compiler = new webpack(config);
@@ -31,10 +34,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressSanitizer());
+app.use(passport.initialize());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use('/', router);
 app.use('/users', users);
 
 app.set(require('webpack-dev-middleware')(compiler,{
@@ -54,8 +58,8 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  res.locals.error = req.app.get('env') === 'production' ? err : {};
+  console.log(err);
   // render the error page
   res.status(err.status || 500);
   res.render('error');

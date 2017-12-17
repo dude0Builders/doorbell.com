@@ -1,12 +1,14 @@
-import router from "./index";
+import {router,auth} from "./index";
 import user from '../models/userModel';
 import userType from '../models/userTypeModel';
 import mongoose from 'mongoose';
+import passport from 'passport';
+
 
 var User = mongoose.model('Users');
 var UserType = mongoose.model('UserType');
 
-router.get('/list', function (req, res, next) {
+router.get('/user/list', auth, function (req, res, next) {
   User.find(function (err, users) {
     if (err)
       res.status(500).json({
@@ -16,7 +18,7 @@ router.get('/list', function (req, res, next) {
   });
 });
 
-router.post('/create', function (req, res, next) {
+router.post('/user/create', auth, function (req, res, next) {
   if (!req.body.username || !req.body.password) {
     return res.status(400).json({
       message: "Please fill all the fields."
@@ -48,7 +50,7 @@ router.param('userid', function (req, res, next, id) {
   })
 })
 
-router.put('/user/:userid', function (req, res, next) {
+router.put('/user/:userid', auth, function (req, res, next) {
   var user = req.user;
   user.setPassword(req.sanitize(req.body.password));
   user.save(function (err) {
@@ -61,17 +63,33 @@ router.put('/user/:userid', function (req, res, next) {
 
 
 router.post('/login', function (req, res, next) {
+  if (!req.body.username && !req.body.password) {
+    return res.status(403).send({
+      'message': 'Please fill all the fields.'
+    })
+  }
+  var username = req.sanitize(req.body.username);
+  var password = req.sanitize(req.body.password);
+  passport.authenticate('local', function (err, user, info) {
+    if (err) return next(err);
+    if (user) {
+      return res.json({
+        token: user.generateJWT()
+      });
+    } else {
+      return res.status(401).json(info);
+    }
 
-  res.end();
+  })(req, res, next);
 })
 
-router.delete('/user/:userid', function (req, res, next) {
+router.delete('/user/:userid', auth, function (req, res, next) {
 
   res.end();
 });
 
 
-router.post('/addusertype', function (req, res, next) {
+router.post('/usertype/create', auth, function (req, res, next) {
   var userType = new UserType();
   var type = req.sanitize(req.body.type);
   var roles = req.sanitize(req.body.roles);
@@ -113,7 +131,7 @@ router.param('usertype', function (req, res, next, id) {
   })
 });
 
-router.put('/updateusertype/:userid/:usertype', function (req, res, next) {
+router.put('/usertype/:userid/:usertype',auth, function (req, res, next) {
   req.user.type = req.type._id;
   var promise = req.user.save();
   promise.then(function (data) {
@@ -130,10 +148,10 @@ router.put('/updateusertype/:userid/:usertype', function (req, res, next) {
 
 });
 
-router.get('/getusertype/:userid', function (req, res, next) {
+router.get('/usertype/:userid', auth, function (req, res, next) {
 
 })
 
-router.delete('/removeusertype/:userid', function (req, res, next) {
+router.delete('/usertype/:userid', auth, function (req, res, next) {
 
 });
