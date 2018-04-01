@@ -6,15 +6,21 @@
     "start": "babel-node ./bin/www"
   },
   "dependencies": {
+    "animejs": "^2.2.0",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
+    "ember-tweenlite": "^1.0.1",
     "express": "~4.15.2",
     "express-jwt": "^5.3.0",
+    "glob": "^7.1.2",
+    "gsap": "^1.20.3",
+    "jquery": "^3.2.1",
     "morgan": "~1.8.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "write-file-webpack-plugin": "^4.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

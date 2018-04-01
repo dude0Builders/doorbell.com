@@ -2,7 +2,7 @@
 
 Template: The Zayka - Multipurpose Restaurant, Food & Cafe HTML5 Template
 Author: potenzaglobalsolutions.com
-Version: 1.0  
+Version: 1.0
 Design and Developed by: potenzaglobalsolutions.com
 
 NOTE: This file includes all revolution slider scripts.
@@ -17,7 +17,7 @@ NOTE: This file includes all revolution slider scripts.
 *************************/
 	var tpj=jQuery;
   tpj(document).ready(function() {
-       var revapi3;     
+       var revapi3;
         if(tpj("#rev_slider_3_1").revolution == undefined){
           revslider_showDoubleJqueryError("#rev_slider_3_1");
         }else{
@@ -25,8 +25,9 @@ NOTE: This file includes all revolution slider scripts.
             sliderType:"standard",
             sliderLayout:"fullwidth",
             dottedOverlay:"none",
-            delay:9000,            
+            delay:9000,
             navigation: {
+              is_mobile:false,
               keyboardNavigation:"off",
               keyboard_direction: "horizontal",
               mouseScrollNavigation:"off",
@@ -51,7 +52,7 @@ NOTE: This file includes all revolution slider scripts.
               h_offset:40,
               v_offset:40,
               space:15,
-                
+
               }
             },
             visibilityLevels:[1240,1024,778,480],
@@ -78,12 +79,12 @@ NOTE: This file includes all revolution slider scripts.
             }
           });
         }
-      
+
 /*************************
       Slider 2
 *************************/
- 
-  var revapi7;   
+
+  var revapi7;
     if(tpj("#rev_slider_7_1").revolution == undefined){
      revslider_showDoubleJqueryError("#rev_slider_7_1");
     }else{
@@ -159,7 +160,7 @@ NOTE: This file includes all revolution slider scripts.
     });
   }
 
-      
+
 /*************************
       Slider 3
 *************************/
@@ -233,7 +234,7 @@ NOTE: This file includes all revolution slider scripts.
           });
         }
 
-      
+
 /*************************
       Slider 4
 *************************/
@@ -307,11 +308,11 @@ NOTE: This file includes all revolution slider scripts.
           });
         }
 
-      
+
 /*************************
       Slider 5
 *************************/
-        
+
      		var revapi21;
 				if(tpj("#rev_slider_21_1").revolution == undefined){
           revslider_showDoubleJqueryError("#rev_slider_21_1");

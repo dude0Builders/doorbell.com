@@ -4,7 +4,7 @@
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Copyright 2013, Codrops
  * http://www.codrops.com
  */
@@ -49,7 +49,7 @@
 				navL.className = 'vs-sidenav-left';
 				navR.className = 'vs-sidenav-right';
 				sidenav.className = 'vs-sidenav';
-				
+
 				sidenav.appendChild( navL );
 				sidenav.appendChild( navR );
 				container.insertBefore( sidenav, wrapper.nextSibling );
@@ -75,7 +75,7 @@
 
 				var invDir = dir === 'right' ? 'left' : 'right';
 				classie.add( container, 'vs-move-' + invDir );
-				
+
 				var l = current === 0 ? sectionsCount - 1 : current - 1,
 					r = current < sectionsCount - 1 ? current + 1 : 0,
 					nextE;
@@ -99,7 +99,7 @@
 					nextSection.removeEventListener( transEndEventName, onTransitionEndFn );
 					// clean classes
 					cleanClasses();
-					
+
 					if( dir === 'right' ) {
 						classie.add( sections[ current ], 'vs-left' );
 						classie.add( sections[ r ], 'vs-current' );
@@ -157,7 +157,7 @@
 					}
 				} )
 			} );
-			
+
 			// add keyboard events
 			document.addEventListener( 'keydown', function( ev ) {
 				var keyCode = ev.keyCode || ev.which,

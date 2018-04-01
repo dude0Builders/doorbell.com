@@ -6,6 +6,7 @@
     "start": "babel-node ./src/bin/www"
   },
   "dependencies": {
+    "babel-core": "^6.26.0",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
