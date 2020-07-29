@@ -7,24 +7,10 @@ var auth = jwt({
 });
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.json("Welcome to api");
 });
 
-router.get('/foods', function(req, res, next){
-  res.render('foods');
-})
 
-router.get('/beverages', function(req, res, next){
-  res.render('beverages');
-})
-
-router.get('/shop', function(req, res, next){
-  res.render('shop');
-})
-
-router.get('/productdetail', function(req, res, next){
-  res.render('product', {productid: req.body.productid});
-})
 
 module.exports = {
   router:router,

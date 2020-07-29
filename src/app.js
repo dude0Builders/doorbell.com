@@ -38,8 +38,9 @@ app.use(passport.initialize());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', router);
+//app.use('/', router);
 app.use('/users', users);
+app.use('/api', router);
 
 app.set(require('webpack-dev-middleware')(compiler,{
   noInfo:false,
@@ -65,6 +66,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-mongoConn.createConn("dude0builders.tk", 27017);
+mongoConn.createConn("localhost", 27017);
 
 module.exports = app;
